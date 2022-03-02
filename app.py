@@ -16,8 +16,8 @@ import seaborn as sns
 
 import plotly.express as px
 
-# import dash
-from jupyter_dash import JupyterDash
+import dash
+#from jupyter_dash import JupyterDash
 from dash import dcc
 #import dash_core_components as dcc
 from dash import html
@@ -43,7 +43,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/srinathkr07/IPL-Data-Analysi
 
 
 #app = JupyterDash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
 # styling the sidebar
