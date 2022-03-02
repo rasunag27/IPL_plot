@@ -42,7 +42,7 @@ from plotly.subplots import make_subplots
 df = pd.read_csv('https://raw.githubusercontent.com/srinathkr07/IPL-Data-Analysis/master/matches.csv')
 
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = JupyterDash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 server = app.server
 
