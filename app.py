@@ -21,6 +21,8 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 from jupyter_dash import JupyterDash
 
+USERNAME_PASSWORD_PAIRS=[['ipl','ipl']]
+
 df = pd.read_csv('https://raw.githubusercontent.com/srinathkr07/IPL-Data-Analysis/master/matches.csv')
 
 df=df.fillna(0)
