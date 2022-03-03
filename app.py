@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 """plotly_slider.ipynb
 
@@ -20,11 +21,42 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 from jupyter_dash import JupyterDash
+=======
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+import plotly.express as px
+
+import dash
+#from jupyter_dash import JupyterDash
+from dash import dcc
+#import dash_core_components as dcc
+from dash import html
+
+#import dash_core_components as dcc
+#import dash_html_components as html
+
+
+from dash import Dash, dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+import dash_table
+
+
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+USERNAME_PASSWORD_PAIRS=[['guvi','guvi']]
+
+
+"""Import data"""
+>>>>>>> 6b29f585830f4022905ae37bf0183ff642654206
 
 df = pd.read_csv('https://raw.githubusercontent.com/srinathkr07/IPL-Data-Analysis/master/matches.csv')
 
 df=df.fillna(0)
 
+<<<<<<< HEAD
 import dash
 from jupyter_dash import JupyterDash
 import dash_bootstrap_components as dbc
@@ -35,6 +67,11 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
 app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+=======
+#app = JupyterDash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
+>>>>>>> 6b29f585830f4022905ae37bf0183ff642654206
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
