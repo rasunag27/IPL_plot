@@ -22,7 +22,7 @@ import dash_table
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
+USERNAME_PASSWORD_PAIRS=[['guvi','guvi']]
 """Installation  - It should be present in requirements.txt"""
 
 #!pip install jupyter-dash -q
