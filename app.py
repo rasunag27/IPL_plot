@@ -34,8 +34,9 @@ import dash_table
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-
+#app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+server=app.server
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -218,4 +219,4 @@ def render_page_content(pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True,port=8888)
+    app.run_server(debug=True)
