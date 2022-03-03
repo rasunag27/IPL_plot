@@ -7,12 +7,12 @@ import plotly.express as px
 
 import dash
 #from jupyter_dash import JupyterDash
-#from dash import dcc
+from dash import dcc
 #import dash_core_components as dcc
-#from dash import html
+from dash import html
 
-import dash_core_components as dcc
-import dash_html_components as html
+#import dash_core_components as dcc
+#import dash_html_components as html
 
 
 from dash import Dash, dcc, html, Input, Output
