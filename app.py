@@ -23,6 +23,12 @@ from jupyter_dash import JupyterDash
 
 df = pd.read_csv('https://raw.githubusercontent.com/srinathkr07/IPL-Data-Analysis/master/matches.csv')
 
+df.isna().sum()
+
+df['city'].fillna('Rajkot', inplace=True)
+df['winner'].fillna('Royal Challengers Bangalore', inplace=True)
+df['player_of_match'].fillna('AJ Tye', inplace=True)
+
 df=df.fillna(0)
 
 import dash
@@ -101,6 +107,7 @@ def figure1(df):
 
     fig.update_layout(title_text='Top and Least 5 winnings based on total matches of {}'.format(df_win_by_counts['winner'].sum()))
     fig.update_traces(textposition='inside', textinfo='label+value')
+    fig.update_layout(margin=dict(t=0, b=0, l=0, r=0))
 
     return fig
 
@@ -154,31 +161,40 @@ def render_page_content(pathname):
     if pathname == "/":
         return [
                 html.H1('IPL Dataset Analysis',
-                        style={'textAlign':'center'}),
-                html.H6('This is an IPL Dataset of match-by-match from the seasons 2008 to 2019.'),
-                html.H6('Five different analysis is done on the dataset with graphs. The observation can be visualized by clicking the options in the sidebar.'),
-                html.H6('Below represents the dataset'),
-                html.H4('IPL Dataset'),
-                dash_table.DataTable(data = df[:15].to_dict('records'), columns = [{"name": i, "id": i} for i in df.columns]),
-                
+                        style={'textAlign':'center', 'margin-bottom':15}),
+                html.H6('The dataset is an IPL Dataset of match-by-match from the seasons 2008 to 2019.', style={'margin-bottom': 15}),
+                html.H6('Five different analysis is done on the dataset with graphs. The observation can be visualized by clicking the options in the sidebar.', style={'margin-bottom':25}),
+                html.H4('Sample IPL Dataset', style={'margin-bottom': 20}),
+                dash_table.DataTable(data = df[:15].to_dict('records'), columns = [{"name": i, "id": i} for i in df.columns], style_data={'color': 'gray','backgroundColor': 'white'},
+                                     style_cell={
+                                         'height': 'auto',
+                                         # all three widths are needed
+                                         'minWidth': '180px', 'width': '180px', 'maxWidth': '180px',
+                                         'whiteSpace': 'normal'}
+                                     ),
                 ]
     elif pathname == "/page-1":
         return [
                 html.H1('IPL Dataset Analysis',
-                        style={'textAlign':'center'}),
-                html.H3('Top 5 and Least 5 teams based on winning count',
-                        style={'textAligh': 'center'}),
+                        style={'textAlign':'center', 'margin-bottom':15}),
+                html.H4('Pie chart for top 5 and Least 5 teams based on winning count',
+                        style={'textAlign': 'center'}),
+                html.H6('Among all seasons, Mumbai Indians have won the maximum with the count of 109 matches and least being Rising Pune Supergaints with only 5 matches',
+                        style={'textAlign': 'center', 'margin-bottom':15}),
                 dcc.Graph(id='bargraph',
                           figure=figure1(df)),
+                html.H4('The below bar graph gives win count of top 10 teams',
+                        style={'textAlign': 'center'}),
+
                 dcc.Graph(id='bargraph',
                           figure=figure1_bar(df))
                 ]
     elif pathname == "/page-2":
         return [
                 html.H1('IPL Dataset Analysis',
-                        style={'textAlign':'center'}),
-                html.H3('Top 10 players based on Man of Match',
-                        style={'textAligh': 'center'}),
+                        style={'textAlign':'center', 'margin-bottom':15}),
+                html.H6('The bar graph represents top 10 players based on Man of Match, we can observe that CH Gayle has been the player of the match for 21 times',
+                        style={'textAlign': 'left'}),
                 dcc.Graph(id='bargraph',
                          figure=figure2(df))
                 ]
@@ -186,12 +202,12 @@ def render_page_content(pathname):
         return [
                 html.H1('IPL Dataset Analysis',
                         style={'textAlign':'center'}),
-                html.H3('Teams win by runs',
-                        style={'textAligh': 'center'}),
+                html.H6('Most runs are scored by Mumbai Indians with a total of 1886 runs.',
+                        style={'textAlign': 'left'}),
                 dcc.Graph(id='bargraph',
                          figure=figure3(df)),
-                html.H3('Teams win by wickets',
-                        style={'textAligh': 'center'}),
+                html.H6('Most wickets are taken by Kolkata Night riders with a total of 351 wickets.',
+                        style={'textAlign': 'left'}),
                 dcc.Graph(id='bargraph',
                          figure=figure4(df))
                 ]
